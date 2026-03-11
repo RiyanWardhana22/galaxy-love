@@ -10,7 +10,7 @@ const camera = new THREE.PerspectiveCamera(
   75,
   window.innerWidth / window.innerHeight,
   0.1,
-  100000
+  100000,
 );
 camera.position.set(0, 20, 30);
 
@@ -43,7 +43,7 @@ function createGlowMaterial(color, size = 128, opacity = 0.55) {
     0,
     size / 2,
     size / 2,
-    size / 2
+    size / 2,
   );
   gradient.addColorStop(0, color);
   gradient.addColorStop(1, "rgba(0,0,0,0)");
@@ -73,7 +73,7 @@ for (let i = 0; i < 15; i++) {
   nebula.position.set(
     (Math.random() - 0.5) * 175,
     (Math.random() - 0.5) * 175,
-    (Math.random() - 0.5) * 175
+    (Math.random() - 0.5) * 175,
   );
   scene.add(nebula);
 }
@@ -91,7 +91,7 @@ const galaxyParameters = {
 
 const defaultHeartImages = Array.from(
   { length: 2 },
-  (_, i) => `images/img${i + 1}.jpg`
+  (_, i) => `images/img${i + 1}.jpeg`,
 );
 
 const heartImages = [
@@ -163,11 +163,11 @@ for (let i = 0; i < galaxyParameters.count; i++) {
 const galaxyGeometry = new THREE.BufferGeometry();
 galaxyGeometry.setAttribute(
   "position",
-  new THREE.BufferAttribute(positions.slice(0, pointIdx * 3), 3)
+  new THREE.BufferAttribute(positions.slice(0, pointIdx * 3), 3),
 );
 galaxyGeometry.setAttribute(
   "color",
-  new THREE.BufferAttribute(colors.slice(0, pointIdx * 3), 3)
+  new THREE.BufferAttribute(colors.slice(0, pointIdx * 3), 3),
 );
 
 const galaxyMaterial = new THREE.ShaderMaterial({
@@ -258,7 +258,7 @@ function createNeonTexture(image, size) {
     offsetY,
     offsetX + drawWidth,
     offsetY + cornerRadius,
-    cornerRadius
+    cornerRadius,
   );
   ctx.lineTo(offsetX + drawWidth, offsetY + drawHeight - cornerRadius);
   ctx.arcTo(
@@ -266,7 +266,7 @@ function createNeonTexture(image, size) {
     offsetY + drawHeight,
     offsetX + drawWidth - cornerRadius,
     offsetY + drawHeight,
-    cornerRadius
+    cornerRadius,
   );
   ctx.lineTo(offsetX + cornerRadius, offsetY + drawHeight);
   ctx.arcTo(
@@ -274,7 +274,7 @@ function createNeonTexture(image, size) {
     offsetY + drawHeight,
     offsetX,
     offsetY + drawHeight - cornerRadius,
-    cornerRadius
+    cornerRadius,
   );
   ctx.lineTo(offsetX, offsetY + cornerRadius);
   ctx.arcTo(offsetX, offsetY, offsetX + cornerRadius, offsetY, cornerRadius);
@@ -325,7 +325,7 @@ for (let group = 0; group < numGroups; group++) {
     const colorFar = galaxyParameters.insideColor.clone();
     colorFar.lerp(
       galaxyParameters.outsideColor,
-      radius / galaxyParameters.radius
+      radius / galaxyParameters.radius,
     );
     colorFar.multiplyScalar(0.7 + 0.3 * Math.random());
     groupColorsFar[idx] = colorFar.r;
@@ -340,21 +340,21 @@ for (let group = 0; group < numGroups; group++) {
   const groupGeometryNear = new THREE.BufferGeometry();
   groupGeometryNear.setAttribute(
     "position",
-    new THREE.BufferAttribute(groupPositions.slice(0, validPointCount * 3), 3)
+    new THREE.BufferAttribute(groupPositions.slice(0, validPointCount * 3), 3),
   );
   groupGeometryNear.setAttribute(
     "color",
-    new THREE.BufferAttribute(groupColorsNear.slice(0, validPointCount * 3), 3)
+    new THREE.BufferAttribute(groupColorsNear.slice(0, validPointCount * 3), 3),
   );
 
   const groupGeometryFar = new THREE.BufferGeometry();
   groupGeometryFar.setAttribute(
     "position",
-    new THREE.BufferAttribute(groupPositions.slice(0, validPointCount * 3), 3)
+    new THREE.BufferAttribute(groupPositions.slice(0, validPointCount * 3), 3),
   );
   groupGeometryFar.setAttribute(
     "color",
-    new THREE.BufferAttribute(groupColorsFar.slice(0, validPointCount * 3), 3)
+    new THREE.BufferAttribute(groupColorsFar.slice(0, validPointCount * 3), 3),
   );
 
   const posAttr = groupGeometryFar.getAttribute("position");
@@ -424,7 +424,7 @@ for (let i = 0; i < starCount; i++) {
 }
 starGeometry.setAttribute(
   "position",
-  new THREE.BufferAttribute(starPositions, 3)
+  new THREE.BufferAttribute(starPositions, 3),
 );
 
 const starMaterial = new THREE.PointsMaterial({
@@ -481,7 +481,7 @@ function createShootingStar() {
   const atmosphereGeometry = new THREE.SphereGeometry(
     planetRadius * 1.05,
     48,
-    48
+    48,
   );
   const atmosphereMaterial = new THREE.ShaderMaterial({
     uniforms: {
@@ -547,22 +547,22 @@ function createRandomCurve() {
   const startPoint = new THREE.Vector3(
     -200 + Math.random() * 100,
     -100 + Math.random() * 200,
-    -100 + Math.random() * 200
+    -100 + Math.random() * 200,
   );
   const endPoint = new THREE.Vector3(
     600 + Math.random() * 200,
     startPoint.y + (-100 + Math.random() * 200),
-    startPoint.z + (-100 + Math.random() * 200)
+    startPoint.z + (-100 + Math.random() * 200),
   );
   const controlPoint1 = new THREE.Vector3(
     startPoint.x + 200 + Math.random() * 100,
     startPoint.y + (-50 + Math.random() * 100),
-    startPoint.z + (-50 + Math.random() * 100)
+    startPoint.z + (-50 + Math.random() * 100),
   );
   const controlPoint2 = new THREE.Vector3(
     endPoint.x - 200 + Math.random() * 100,
     endPoint.y + (-50 + Math.random() * 100),
-    endPoint.z + (-50 + Math.random() * 100)
+    endPoint.z + (-50 + Math.random() * 100),
   );
 
   points.push(startPoint, controlPoint1, controlPoint2, endPoint);
@@ -570,7 +570,7 @@ function createRandomCurve() {
     startPoint,
     controlPoint1,
     controlPoint2,
-    endPoint
+    endPoint,
   );
 }
 
@@ -585,7 +585,7 @@ function createPlanetTexture(size = 512) {
     size / 8,
     size / 2,
     size / 2,
-    size / 2
+    size / 2,
   );
   gradient.addColorStop(0.0, "#f8bbd0");
   gradient.addColorStop(0.12, "#f48fb1");
@@ -631,7 +631,7 @@ function createPlanetTexture(size = 512) {
       Math.random() * size,
       Math.random() * size,
       Math.random() * size,
-      Math.random() * size
+      Math.random() * size,
     );
     ctx.strokeStyle =
       "rgba(180, 120, 200, " + (0.12 + Math.random() * 0.18) + ")";
@@ -812,7 +812,7 @@ function createTextRings() {
       1,
       128,
       1,
-      true
+      true,
     );
 
     const ringMaterial = new THREE.MeshBasicMaterial({
@@ -1174,7 +1174,7 @@ function animate() {
         const worldY = positionAttr.getY(i) + obj.position.y;
         const worldZ = positionAttr.getZ(i) + obj.position.z;
         const distance = camera.position.distanceTo(
-          new THREE.Vector3(worldX, worldY, worldZ)
+          new THREE.Vector3(worldX, worldY, worldZ),
         );
         if (distance < 10) {
           isClose = true;
